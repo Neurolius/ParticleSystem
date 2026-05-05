@@ -17,6 +17,8 @@ namespace ParticleSystem
         public float GravitationX = 0;
         public float GravitationY = 0;
 
+        public int ParticlesCount = 500;
+
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
         public void UpdateState()
@@ -46,7 +48,7 @@ namespace ParticleSystem
 
             for (var i = 0; i < 10; ++i)
             {
-                if (particles.Count < 500)
+                if (particles.Count < ParticlesCount)
                 {
                     var particle = new ParticleColorful();
                     particle.FromColor = Color.White;
