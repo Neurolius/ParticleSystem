@@ -14,6 +14,9 @@ namespace ParticleSystem
         public int MousePositionX;
         public int MousePositionY;
 
+        public float GravitationX = 0;
+        public float GravitationY = 1;
+
         public void UpdateState()
         {
             foreach (var particle in particles)
@@ -37,6 +40,9 @@ namespace ParticleSystem
                 }
                 else
                 {
+                    particle.SpeedX += GravitationX;
+                    particle.SpeedY += GravitationY;
+
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
                 }
@@ -59,7 +65,6 @@ namespace ParticleSystem
                 }
             }
         }
-
 
         public void Render(Graphics g)
         {
