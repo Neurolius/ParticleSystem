@@ -19,14 +19,6 @@ namespace ParticleSystem
             InitializeComponent();
 
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-
-            for (var i = 0; i < 500; ++i)
-            {
-                var particle = new Particle();
-                particle.X = picDisplay.Image.Width / 2;
-                particle.Y = picDisplay.Image.Height / 2;
-                particles.Add(particle);
-            }
         }
 
         private void UpdateState()
@@ -38,9 +30,9 @@ namespace ParticleSystem
                 if (particle.Life < 0)
                 {
                     particle.Life = 20 + Particle.rand.Next(100);
-                    
-                    particle.X = picDisplay.Image.Width / 2;
-                    particle.Y = picDisplay.Image.Height / 2;
+
+                    particle.X = MousePositionX;
+                    particle.Y = MousePositionY;
                     particle.Direction = Particle.rand.Next(360);
                     particle.Speed = 1 + Particle.rand.Next(10);
                     particle.Radius = 2 + Particle.rand.Next(10);
@@ -50,6 +42,21 @@ namespace ParticleSystem
                     var directionInRadians = particle.Direction / 180 * Math.PI;
                     particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
                     particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
+                }
+            }
+
+            for (var i = 0; i < 10; ++i)
+            {
+                if (particles.Count < 500) 
+                {
+                    var particle = new Particle();
+                    particle.X = MousePositionX;
+                    particle.Y = MousePositionY;
+                    particles.Add(particle);
+                }
+                else
+                {
+                    break; 
                 }
             }
         }
@@ -73,6 +80,15 @@ namespace ParticleSystem
             }
 
             picDisplay.Invalidate();
+        }
+
+        private int MousePositionX = 0;
+        private int MousePositionY = 0;
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            MousePositionX = e.X;
+            MousePositionY = e.Y;
         }
     }
 }
