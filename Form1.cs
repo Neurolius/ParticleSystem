@@ -49,7 +49,9 @@ namespace ParticleSystem
             {
                 if (particles.Count < 500) 
                 {
-                    var particle = new Particle();
+                    var particle = new ParticleColorful();
+                    particle.FromColor = Color.Yellow;
+                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
                     particle.X = MousePositionX;
                     particle.Y = MousePositionY;
                     particles.Add(particle);
@@ -75,7 +77,7 @@ namespace ParticleSystem
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.White);
+                g.Clear(Color.Black);
                 Render(g); 
             }
 
