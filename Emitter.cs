@@ -57,6 +57,8 @@ namespace ParticleSystem
 
             foreach (var particle in particles)
             {
+                particle.X += particle.SpeedX;
+                particle.Y += particle.SpeedY;
 
                 if (particle.Life < 0)
                 {
@@ -76,8 +78,6 @@ namespace ParticleSystem
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
                 }
             }
 
