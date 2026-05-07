@@ -19,11 +19,13 @@ namespace ParticleSystem
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            emitter = new TopEmitter
-            {
-                Width = picDisplay.Width,
-                GravitationY = 0.25f
-            };
+            //emitter = new TopEmitter
+            //{
+            //    Width = picDisplay.Width,
+            //    GravitationY = 0.25f
+            //};
+
+            emitter = new Emitter();
 
             emitter.impactPoints.Add(new GravityPoint
             {
@@ -59,8 +61,8 @@ namespace ParticleSystem
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            emitter.MousePositionX = e.X;
-            emitter.MousePositionY = e.Y;
+            emitter.X = e.X;
+            emitter.Y = e.Y;
         }
     }
 }
