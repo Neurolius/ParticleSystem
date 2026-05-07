@@ -14,7 +14,7 @@ namespace ParticleSystem
 
         public abstract void ImpactParticle(Particle particle);
 
-        public void Render(Graphics g)
+        public virtual void Render(Graphics g)
         {
             g.FillEllipse(
                     new SolidBrush(Color.Red),
@@ -37,6 +37,17 @@ namespace ParticleSystem
 
             particle.SpeedX += gX * Power / r2;
             particle.SpeedY += gY * Power / r2;
+        }
+
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(
+                   new Pen(Color.Red),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power,
+                   Power
+               );
         }
     }
 
