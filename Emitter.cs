@@ -36,7 +36,7 @@ namespace ParticleSystem
 
 
         public float GravitationX = 0;
-        public float GravitationY = 1;
+        public float GravitationY = 0.5f;
 
         public int ParticlesCount = 500;
 

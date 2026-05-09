@@ -15,6 +15,8 @@ namespace ParticleSystem
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
+        private ReflectionPoint mouseReflectPoint;
+
         public Form1()
         {
             InitializeComponent();
@@ -34,6 +36,12 @@ namespace ParticleSystem
             };
             emitters.Add(this.emitter);
 
+
+            emitter.impactPoints.Add(new ReflectionPoint { X = 450, Y = 500, Radius = 40 });
+            emitter.impactPoints.Add(new ReflectionPoint { X = 300, Y = 300, Radius = 60 });
+
+            mouseReflectPoint = new ReflectionPoint { Radius = 50 };
+            emitter.impactPoints.Add(mouseReflectPoint);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -51,12 +59,8 @@ namespace ParticleSystem
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            //foreach (var emitter in emitters)
-            //{
-            //    emitter.X = e.X;
-            //    emitter.Y = e.Y;
-            //}
-  
+            mouseReflectPoint.X = e.X;
+            mouseReflectPoint.Y = e.Y;
         }
 
         private void tbDirection_Scroll(object sender, EventArgs e)

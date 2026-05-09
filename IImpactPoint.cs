@@ -29,13 +29,14 @@ namespace ParticleSystem
     public class CounterPoint : IImpactPoint
     {
         public int Count = 0;
+        public float Radius = 15;
 
         public override void ImpactParticle(Particle particle)
         {
             float dX = X - particle.X;
             float dY = Y - particle.Y;
 
-            if (dX * dX + dY * dY < 100)
+            if (dX * dX + dY * dY < Radius * Radius)
             {
                 particle.Life = -1;
                 Count++;
@@ -44,8 +45,43 @@ namespace ParticleSystem
 
         public override void Render(Graphics g)
         {
-            g.FillEllipse(Brushes.Cyan, X - 8, Y - 8, 25, 25);
-            g.DrawString(Count.ToString(), SystemFonts.DefaultFont, Brushes.White, X + 15, Y - 8);
+            g.FillEllipse(Brushes.Cyan, X - Radius, Y - Radius, Radius * 2, Radius * 2);
+            g.DrawString(Count.ToString(), SystemFonts.DefaultFont, Brushes.White, X + Radius + 2, Y - 8);
+        }
+    }
+
+    public class ReflectionPoint : IImpactPoint
+    {
+        public float Radius = 30;
+
+        public override void ImpactParticle(Particle particle)
+        {
+            float dX = particle.X - X;
+            float dY = particle.Y - Y;
+            float dist2 = dX * dX + dY * dY;
+
+            if (dist2 < Radius * Radius && dist2 > 0)
+            { 
+                float dist = (float)Math.Sqrt(dist2);
+                float nX = dX / dist;
+                float nY = dY / dist;
+
+                float dot = particle.SpeedX * nX + particle.SpeedY * nY;
+                particle.SpeedX -= 2 * dot * nX;
+                particle.SpeedY -= 2 * dot * nY;
+
+
+                particle.X = X + nX * (Radius + 1);
+                particle.Y = Y + nY * (Radius + 1);
+            }
+        }
+
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(new Pen(Color.DeepSkyBlue, 2), 
+                X - Radius, Y - Radius, 
+                Radius * 2, Radius * 2
+            );
         }
     }
 
