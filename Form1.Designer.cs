@@ -48,6 +48,7 @@
             this.picDisplay.TabStop = false;
             this.picDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseDown);
             this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
+            this.picDisplay.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseWheel);
             // 
             // timer1
             // 

@@ -85,6 +85,50 @@ namespace ParticleSystem
         }
     }
 
+    public class RadarPoint : IImpactPoint
+    {
+        public float Radius = 80;
+
+        private List<Particle> inRange = new List<Particle>();
+
+        public override void ImpactParticle(Particle particle)
+        {
+            float dX = particle.X - X;
+            float dY = particle.Y - Y;
+
+            if (dX * dX + dY * dY < Radius * Radius)
+                inRange.Add(particle);
+        }
+
+        public override void Render(Graphics g)
+        {
+            foreach (var p in inRange)
+            {
+                g.FillEllipse(Brushes.LimeGreen,
+                    p.X - p.Radius - 3,
+                    p.Y - p.Radius - 3,
+                    (p.Radius + 3) * 2,
+                    (p.Radius + 3) * 2);
+            }
+
+            var pen = new Pen(Color.FromArgb(160, Color.LimeGreen), 2);
+            g.DrawEllipse(pen, X - Radius, Y - Radius, Radius * 2, Radius * 2);
+
+            var stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
+
+            g.DrawString(inRange.Count.ToString(), 
+                SystemFonts.DefaultFont, 
+                Brushes.LimeGreen,
+                X, Y, 
+                stringFormat
+            );
+
+            inRange.Clear();
+        }
+    }
+
     public class GravityPoint : IImpactPoint
     {
         public int Power = 100;

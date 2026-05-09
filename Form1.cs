@@ -16,6 +16,7 @@ namespace ParticleSystem
         Emitter emitter;
 
         private ReflectionPoint mouseReflectPoint;
+        private RadarPoint radar;
 
         public Form1()
         {
@@ -36,12 +37,14 @@ namespace ParticleSystem
             };
             emitters.Add(this.emitter);
 
-
             emitter.impactPoints.Add(new ReflectionPoint { X = 450, Y = 500, Radius = 40 });
             emitter.impactPoints.Add(new ReflectionPoint { X = 300, Y = 300, Radius = 60 });
 
             mouseReflectPoint = new ReflectionPoint { Radius = 50 };
             emitter.impactPoints.Add(mouseReflectPoint);
+
+            radar = new RadarPoint { X = 500, Y = 500 };
+            emitter.impactPoints.Add(radar);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -76,6 +79,11 @@ namespace ParticleSystem
             {
                 emitter.impactPoints.Add(new CounterPoint { X = e.X, Y = e.Y });
             }
+        }
+
+        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            radar.Radius = Math.Max(20, radar.Radius + e.Delta / 10);
         }
     }
 }
