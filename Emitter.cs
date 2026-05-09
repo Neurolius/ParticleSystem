@@ -95,7 +95,8 @@ namespace ParticleSystem
 
             foreach (var particle in particles)
             {
-                particle.Draw(g);
+                if (particle.Life >= 0)
+                    particle.Draw(g);
             }
 
             foreach (var point in impactPoints) 

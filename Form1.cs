@@ -15,9 +15,6 @@ namespace ParticleSystem
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
-        GravityPoint point1; 
-        GravityPoint point2; 
-
         public Form1()
         {
             InitializeComponent();
@@ -37,19 +34,6 @@ namespace ParticleSystem
             };
             emitters.Add(this.emitter);
 
-            point1 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 + 100,
-                Y = picDisplay.Height / 2,
-            };
-            point2 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 - 100,
-                Y = picDisplay.Height / 2,
-            };
-
-            emitter.impactPoints.Add(point1);
-            emitter.impactPoints.Add(point2);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -67,14 +51,12 @@ namespace ParticleSystem
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            foreach (var emitter in emitters)
-            {
-                emitter.MousePositionX = e.X;
-                emitter.MousePositionY = e.Y;
-            }
+            //foreach (var emitter in emitters)
+            //{
+            //    emitter.X = e.X;
+            //    emitter.Y = e.Y;
+            //}
   
-            point2.X = e.X;
-            point2.Y = e.Y;
         }
 
         private void tbDirection_Scroll(object sender, EventArgs e)
@@ -83,14 +65,13 @@ namespace ParticleSystem
             lblDirection.Text = $"{tbDirection.Value}°";
         }
 
-        private void tbGraviton_Scroll(object sender, EventArgs e)
-        {
-            point1.Power = tbGraviton.Value;
-        }
 
-        private void tbGraviton2_Scroll(object sender, EventArgs e)
+        private void picDisplay_MouseDown(object sender, MouseEventArgs e)
         {
-            point2.Power = tbGraviton2.Value;
+            if (e.Button == MouseButtons.Left)
+            {
+                emitter.impactPoints.Add(new CounterPoint { X = e.X, Y = e.Y });
+            }
         }
     }
 }
