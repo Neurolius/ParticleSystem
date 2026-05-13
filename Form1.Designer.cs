@@ -34,9 +34,14 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.tbDirection = new System.Windows.Forms.TrackBar();
             this.lblDirection = new System.Windows.Forms.Label();
+            this.tbPartCount = new System.Windows.Forms.TrackBar();
+            this.lbPartCount = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPartCount)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -81,11 +86,53 @@
             this.lblDirection.TabIndex = 3;
             this.lblDirection.Text = "0";
             // 
+            // tbPartCount
+            // 
+            this.tbPartCount.Location = new System.Drawing.Point(269, 588);
+            this.tbPartCount.Maximum = 16;
+            this.tbPartCount.Minimum = 1;
+            this.tbPartCount.Name = "tbPartCount";
+            this.tbPartCount.Size = new System.Drawing.Size(197, 45);
+            this.tbPartCount.TabIndex = 4;
+            this.tbPartCount.Value = 16;
+            this.tbPartCount.Scroll += new System.EventHandler(this.tbPartCount_Scroll);
+            // 
+            // lbPartCount
+            // 
+            this.lbPartCount.AutoSize = true;
+            this.lbPartCount.Location = new System.Drawing.Point(483, 598);
+            this.lbPartCount.Name = "lbPartCount";
+            this.lbPartCount.Size = new System.Drawing.Size(19, 13);
+            this.lbPartCount.TabIndex = 5;
+            this.lbPartCount.Text = "16";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 640);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Направление вылета частиц";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(266, 636);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Количество частиц в тик";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 641);
+            this.ClientSize = new System.Drawing.Size(939, 679);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbPartCount);
+            this.Controls.Add(this.tbPartCount);
             this.Controls.Add(this.lblDirection);
             this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.trackBar1);
@@ -95,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPartCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,6 +155,10 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.TrackBar tbDirection;
         private System.Windows.Forms.Label lblDirection;
+        private System.Windows.Forms.TrackBar tbPartCount;
+        private System.Windows.Forms.Label lbPartCount;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -85,5 +85,11 @@ namespace ParticleSystem
         {
             radar.Radius = Math.Max(20, radar.Radius + e.Delta / 10);
         }
+
+        private void tbPartCount_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = tbPartCount.Value;
+            lbPartCount.Text = $"{tbPartCount.Value}";
+        }
     }
 }
